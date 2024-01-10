@@ -3,6 +3,8 @@ from urllib.parse import urlparse
 
 import requests
 
+import functions
+
 parser = argparse.ArgumentParser(description="My own curl implemenation")
 parser.add_argument("url", help="Name of the url")
 
@@ -23,7 +25,7 @@ print("URL:", url)
 print("Port:", port)
 
 # validate schema to be supported one
-if (schema != "http" and schema != "https"):
+if not functions.isValidSchema(schema):
     raise ValueError("Incorrect url schema. This script supports only http and https")
 
 # make network call
